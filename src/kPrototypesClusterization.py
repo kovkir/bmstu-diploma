@@ -1,5 +1,6 @@
 # K-Prototypes Clusterization
 
+from matplotlib import pyplot as plt
 from typing import List, Union
 from random import randint
 
@@ -11,12 +12,13 @@ class KPrototypesClusterization():
     players: List[List[str]] # список игроков
     k: int                   # количество кластеров
     clusterContents: List[List[int]] # массив, содержащий в себе k массивов c номерами элементов, принадлежащих соответствующему кластеру
+    clusterCenters: List[List[Union[str, int]]] # массив, содержащий в себе k центров кластеров
 
 
     def __init__(self, players: List[List[str]], k: int, clusterContents: Union[List[List[int]], None]=None):
         self.players = players
         self.k = k
-        self.clusterContents = self.run(clusterContents)
+        self.clusterContents, self.clusterCenters = self.run(clusterContents)
 
 
     def generateClusterCenters(self) -> List[List[Union[str, int]]]:
@@ -27,8 +29,8 @@ class KPrototypesClusterization():
 
         for _ in range(self.k):
             rating  = randint(MIN_RATING, MAX_RATING)
-            country = self.players[randint(MIN_PLAYER_NUMBER, MAX_PLAYER_NUMBER)][COUNTRY_COLUMN_NUMBER]
-            club    = self.players[randint(MIN_PLAYER_NUMBER, MAX_PLAYER_NUMBER)][CLUB_COLUMN_NUMBER]
+            country = self.players[randint(0, len(self.players) - 1)][COUNTRY_COLUMN_NUMBER]
+            club    = self.players[randint(0, len(self.players) - 1)][CLUB_COLUMN_NUMBER]
 
             clusterCenters.append(["", rating, country, club])
 
@@ -91,10 +93,11 @@ class KPrototypesClusterization():
         '''
         Возвращает матрицу растояний от элементов до центров кластеров
         '''
-        matrix = [ [0] * self.k for _ in range(MAX_CLUSTER_NUMBERS) ]
+        numbObjects = len(self.players)
+        matrix = [ [0] * self.k for _ in range(numbObjects) ]
         distance = Distance()
 
-        for i in range(MAX_CLUSTER_NUMBERS):
+        for i in range(numbObjects):
             for j in range(self.k):
                 matrix[i][j] = distance.goverDistance(self.players[i], clusterCenters[j])
 
@@ -135,5 +138,33 @@ class KPrototypesClusterization():
             clusterCenters = self.recalculateClusterCenters(prevСlusterCenters, clusterContents)
             if prevСlusterCenters == clusterCenters:
                 break
+        
+        return clusterContents, clusterCenters
+    
 
-        return clusterContents
+    def findDistancesToClusterCenters(self):
+        '''
+        Нахождение расстояний между элементами кластеров и их центрами для построения графика
+        '''
+        distsToCenter = []
+        centerNumbers = []
+        matrixDists = self.createMatrixDistances(self.clusterCenters)
+
+        for iCenter in range(self.k):
+            for iElem in self.clusterContents[iCenter]:
+                distsToCenter.append(matrixDists[iElem][iCenter])
+                centerNumbers.append(iCenter)
+
+        return distsToCenter, centerNumbers
+    
+
+    def buildGraph(self) -> None:
+        distsToCenter, centerNumbers = self.findDistancesToClusterCenters()
+
+        plt.figure(figsize=(10, 7))
+        plt.plot(distsToCenter, centerNumbers, 'or', label = 'K-Prototypes Clusterization')
+        plt.grid(True)
+        plt.legend()
+        plt.ylabel('Номер кластера')
+        plt.xlabel('Расстояния до центра кластера')
+        plt.show()

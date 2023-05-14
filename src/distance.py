@@ -26,3 +26,19 @@ class Distance():
             sumCoeffDiff += coeffDiff
 
         return sumCoeffDiff / (len(elem1) - 1)
+
+
+    def createDissimilarityMatrix(self, arr: List[List[str]]) -> List[List[float]]:
+        '''
+        Построение матрицы несходств с помощью расстояния Говера
+        '''
+        size = len(arr)
+        matrix = [ [0] * size for _ in range(size) ]
+
+        for i in range(size - 1):
+            for j in range(i + 1, size):
+                matrix[i][j] = self.goverDistance(arr[i], arr[j])
+                matrix[j][i] = matrix[i][j]
+
+        return matrix
+    

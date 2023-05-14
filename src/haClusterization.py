@@ -156,17 +156,6 @@ class HAClusterization():
         self.printMatrixInfo()
 
         plt.figure(figsize=(15, 8))
+        plt.title("Hybrid Clusterization")
         dendrogram(self.matrixInfo)
-        plt.show()
-
-    
-    def buildGraph(self) -> None:
-        self.printListAvgDistance()
-
-        plt.figure(figsize=(15, 8))
-        plt.plot(self.listAvgDistance[0], self.listAvgDistance[1], label = 'Hierarchical Agglomerative Clusterization')
-        plt.grid(True)
-        plt.legend()
-        plt.ylabel('Среднее расстояние в пределах кластера')
-        plt.xlabel('Кол-во кластеров')
         plt.show()

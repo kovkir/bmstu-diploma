@@ -1,11 +1,7 @@
 from typing import List
 from random import shuffle
 
-from haClusterization import HAClusterization
-from kPrototypesClusterization import KPrototypesClusterization
-from hybridClusterization import HybridClusterization
-from distance import Distance
-from test import Test
+from window import Window
 from constants import *
 
 
@@ -25,34 +21,10 @@ def readFile(nameFile: str) -> List[List[str]]:
     return players
 
 
-def createDissimilarityMatrix(arr: List[List[str]], size: int) -> List[List[float]]:
-    '''
-    Построение матрицы несходств с помощью расстояния Говера
-    '''
-    matrix = [ [0] * size for _ in range(size) ]
-    distance = Distance()
-
-    for i in range(size - 1):
-        for j in range(i + 1, size):
-            matrix[i][j] = distance.goverDistance(arr[i], arr[j])
-            matrix[j][i] = matrix[i][j]
-
-    return matrix
-
-
-def main():
+def main(): 
     players = readFile(FILE_NAME)
-    dissimilarityMatrix = createDissimilarityMatrix(players, MAX_CLUSTER_NUMBERS)
-
-    # haClusterization = HAClusterization(dissimilarityMatrix.copy())
-    # haClusterization.buildDendrogram()
-    # haClusterization.buildGraph()
-
-    # kPrototypesClusterization = KPrototypesClusterization(players, CLUSTER_NUMBERS)
-    # hybridClusterization = HybridClusterization(players, dissimilarityMatrix.copy(), CLUSTER_NUMBERS)
-
-    test = Test(players, dissimilarityMatrix)
-    test.comparisonMethods()
+    window = Window(WINDOW_WIDTH, WINDOW_HEIGHT, players)
+    window.run()
 
 
 if __name__ == "__main__":

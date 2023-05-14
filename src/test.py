@@ -2,6 +2,7 @@ from matplotlib import pyplot as plt
 from typing import List, Union
 from enum import Enum
 
+from distance import Distance
 from haClusterization import HAClusterization
 from kPrototypesClusterization import KPrototypesClusterization
 from hybridClusterization import HybridClusterization
@@ -9,15 +10,28 @@ from constants import *
 
 
 class EventMethod(Enum):
+    HA_CLUST     = 0
     KP_CLUST     = 1
     HYBRID_CLUST = 2
 
 
 class Test():
-    def __init__(self, players: List[List[str]], dissimilarityMatrix: List[List[float]]):
-        self.dissimilarityMatrix = dissimilarityMatrix
+    def __init__(self, players: List[List[str]], numberOfRuns: int):
         self.players = players
+        self.numberOfRuns = numberOfRuns
+        self.maxClusterNymbers = len(players)
+        self.dissimilarityMatrix = self.createDissimilarityMatrix()
+    
 
+    def createDissimilarityMatrix(self):
+        '''
+        Возвращает матрицу несходства
+        '''
+        distance = Distance()
+        dissimilarityMatrix = distance.createDissimilarityMatrix(self.players)
+
+        return dissimilarityMatrix
+    
 
     def calcAvgDistance(self, listClusterNumbers: List[int]) -> float:
         '''
@@ -56,13 +70,13 @@ class Test():
         '''
         if method == method.KP_CLUST:
             sumAvgDistances = 0
-            for _ in range(NUMBER_OF_RUNS):
+            for _ in range(self.numberOfRuns):
                 kPrototypesClusterization = KPrototypesClusterization(self.players, numberClusters)
                 sumAvgDistances += self.calcAvgWithinСlusterDistance(kPrototypesClusterization.clusterContents)
 
-            avgWithinСlusterDistance = sumAvgDistances / NUMBER_OF_RUNS
+            avgWithinСlusterDistance = sumAvgDistances / self.numberOfRuns
         else:
-            hybridClusterization = HybridClusterization(self.players, self.dissimilarityMatrix.copy(), numberClusters)
+            hybridClusterization = HybridClusterization(self.players, numberClusters)
             avgWithinСlusterDistance = self.calcAvgWithinСlusterDistance(hybridClusterization.clusterContents)
 
         return avgWithinСlusterDistance
@@ -72,17 +86,17 @@ class Test():
         listAvgDistanceKP = []
         listAvgDistanceHybrid = []
 
-        for k in range(1, MAX_CLUSTER_NUMBERS + 1):
+        for k in range(1, self.maxClusterNymbers + 1):
             listAvgDistanceKP.append(self.calcAvgWithinСlusterDistanceForMethod(EventMethod.KP_CLUST, k))
             listAvgDistanceHybrid.append(self.calcAvgWithinСlusterDistanceForMethod(EventMethod.HYBRID_CLUST, k))
 
-            print("Проведено сравнение {:d} кластеров из {:d}".format(k, MAX_CLUSTER_NUMBERS))
+            print("Проведено сравнение {:d} кластеров из {:d}".format(k, self.maxClusterNymbers))
             
         haClusterization = HAClusterization(self.dissimilarityMatrix.copy())
 
         listHAClust     = haClusterization.listAvgDistance
-        listKPClust     = [[i for i in range(1, MAX_CLUSTER_NUMBERS + 1)], listAvgDistanceKP]
-        listHybridClust = [[i for i in range(1, MAX_CLUSTER_NUMBERS + 1)], listAvgDistanceHybrid]
+        listKPClust     = [[i for i in range(1, self.maxClusterNymbers + 1)], listAvgDistanceKP]
+        listHybridClust = [[i for i in range(1, self.maxClusterNymbers + 1)], listAvgDistanceHybrid]
 
         self.buildGraph(listHAClust, listKPClust, listHybridClust)
 
