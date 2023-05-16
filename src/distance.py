@@ -5,8 +5,8 @@ from constants import *
 
 class Distance():
     def __init__(self):
-        self.ratingСolumnNumber = RATING_COLUMN_NUMBER
-        self.ratingRange = RATING_RANGE
+        self.numericColumns = NUMERIC_COLUMNS
+        self.rangesList = RANGES_LIST
 
 
     def goverDistance(self, elem1: List[str], elem2: List[str]) -> float:
@@ -14,30 +14,37 @@ class Distance():
         Возвращает расстояние Говера между двумя элементами
         '''
         sumCoeffDiff = 0
+        numberColumns = len(elem1)
         
-        for i in range(1, len(elem1)):
-            if i == self.ratingСolumnNumber:
-                coeffDiff = abs(int(elem1[i]) - int(elem2[i])) / self.ratingRange
-            elif elem1[i] == elem2[i]:
-                coeffDiff = 0
-            else:
-                coeffDiff = 1
+        for columnNumber in range(1, numberColumns):
+            # если столбец содержит числовые данные
+            try:
+                i = self.numericColumns.index(columnNumber)
+                coeffDiff = abs(int(elem1[columnNumber]) - int(elem2[columnNumber])) \
+                     / self.rangesList[i]
+                
+            # если столбец содержит категориальные данные
+            except ValueError:
+                if elem1[columnNumber] == elem2[columnNumber]:
+                    coeffDiff = 0
+                else:
+                    coeffDiff = 1
 
             sumCoeffDiff += coeffDiff
 
-        return sumCoeffDiff / (len(elem1) - 1)
+        return sumCoeffDiff / (numberColumns - 1)
 
 
-    def createDissimilarityMatrix(self, arr: List[List[str]]) -> List[List[float]]:
+    def createDissimilarityMatrix(self, objects: List[List[str]]) -> List[List[float]]:
         '''
         Построение матрицы несходств с помощью расстояния Говера
         '''
-        size = len(arr)
-        matrix = [ [0] * size for _ in range(size) ]
+        numbObjects = len(objects)
+        matrix = [ [0] * numbObjects for _ in range(numbObjects) ]
 
-        for i in range(size - 1):
-            for j in range(i + 1, size):
-                matrix[i][j] = self.goverDistance(arr[i], arr[j])
+        for i in range(numbObjects - 1):
+            for j in range(i + 1, numbObjects):
+                matrix[i][j] = self.goverDistance(objects[i], objects[j])
                 matrix[j][i] = matrix[i][j]
 
         return matrix

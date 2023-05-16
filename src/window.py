@@ -18,13 +18,13 @@ class Window():
     numberRuns: Entry
     methodVar: IntVar
     comparisonVar: IntVar
-    players: List[List[str]]
+    objects: List[List[str]]
 
     
-    def __init__(self, windowWidth: int, windowHeight: int, players: List[List[str]]):
+    def __init__(self, windowWidth: int, windowHeight: int, objects: List[List[str]]):
         self.window = self.createWindow(windowWidth, windowHeight)
         self.createInterface(windowWidth, windowHeight)
-        self.players = players
+        self.objects = objects
 
 
     def createWindow(self, windowWidth: int, windowHeight: int):
@@ -159,7 +159,8 @@ class Window():
         except:
             maxNumberClusters = None
         
-        if maxNumberClusters == None or maxNumberClusters < 1:
+        if maxNumberClusters == None or \
+           maxNumberClusters < 1 or maxNumberClusters > NUMBER_OF_ROWS:
             messagebox.showwarning("Ошибка",
                 "Невозможное значение максимального количества кластеров!\n"
                 "Ожидался ввод натурального числа.")
@@ -210,21 +211,21 @@ class Window():
         if numberClusters == None:
             return
         
-        players = self.players[:maxNumberClusters]
+        objects = self.objects[:maxNumberClusters]
 
         if self.methodVar.get() == HA:
             distance = Distance()
-            dissimilarityMatrix = distance.createDissimilarityMatrix(players)
+            dissimilarityMatrix = distance.createDissimilarityMatrix(objects)
 
             haClusterization = HAClusterization(dissimilarityMatrix)
             haClusterization.buildDendrogram()
 
         elif self.methodVar.get() == K_PROTOTYPES:
-            kPrototypesClusterization = KPrototypesClusterization(players, numberClusters)
+            kPrototypesClusterization = KPrototypesClusterization(objects, numberClusters)
             kPrototypesClusterization.buildGraph()
 
         elif self.methodVar.get() == HYBRID:
-            hybridClusterization = HybridClusterization(players, numberClusters)
+            hybridClusterization = HybridClusterization(objects, numberClusters)
             hybridClusterization.buildGraph()
 
 
@@ -237,10 +238,10 @@ class Window():
         if numberRuns == None:
             return
         
-        players = self.players[:maxNumberClusters]
+        objects = self.objects[:maxNumberClusters]
 
         if self.comparisonVar.get() == ELBOW:
-            test = Test(players, numberRuns)
+            test = Test(objects, numberRuns)
             test.comparisonMethods()
 
         elif self.comparisonVar.get() == EVALUATION_SILHOUETTES:

@@ -9,14 +9,14 @@ from constants import *
 
 
 class KPrototypesClusterization():
-    players: List[List[str]] # список игроков
+    objects: List[List[str]] # список объектов
     k: int                   # количество кластеров
     clusterContents: List[List[int]] # массив, содержащий в себе k массивов c номерами элементов, принадлежащих соответствующему кластеру
     clusterCenters: List[List[Union[str, int]]] # массив, содержащий в себе k центров кластеров
 
 
-    def __init__(self, players: List[List[str]], k: int, clusterContents: Union[List[List[int]], None]=None):
-        self.players = players
+    def __init__(self, objects: List[List[str]], k: int, clusterContents: Union[List[List[int]], None]=None):
+        self.objects = objects
         self.k = k
         self.clusterContents, self.clusterCenters = self.run(clusterContents)
 
@@ -26,35 +26,38 @@ class KPrototypesClusterization():
         Возвращает массив с k центрами кластерами
         '''
         clusterCenters = []
+        numbObjects = len(self.objects)
+        numberColumns = len(self.objects[0])
 
         for _ in range(self.k):
-            rating  = randint(MIN_RATING, MAX_RATING)
-            country = self.players[randint(0, len(self.players) - 1)][COUNTRY_COLUMN_NUMBER]
-            club    = self.players[randint(0, len(self.players) - 1)][CLUB_COLUMN_NUMBER]
+            clusterCenter = []
+            for columnNumber in range(numberColumns):
+                field = self.objects[randint(0, numbObjects - 1)][columnNumber]
+                clusterCenter.append(field)
 
-            clusterCenters.append(["", rating, country, club])
+            clusterCenters.append(clusterCenter)
 
         return clusterCenters
     
     
-    def getAverageRating(self, clusterNumbers: List[int]) -> float:
+    def getAverageField(self, clusterNumbers: List[int], columnNumber: int) -> float:
         '''
-        Возвращает средний рейтинг игроков, принадлежащих одному кластеру
+        Возвращает среднее значение поля в столбце среди элементов кластера
         '''
-        sumRating = 0
+        sumValue = 0
         for i in clusterNumbers:
-            sumRating += int(self.players[i][RATING_COLUMN_NUMBER])
+            sumValue += int(self.objects[i][columnNumber])
         
-        return sumRating / len(clusterNumbers)
+        return sumValue / len(clusterNumbers)
     
 
-    def getMostPopularField(self, clusterNumbers: List[int], columnNumber) -> str:
+    def getMostPopularField(self, clusterNumbers: List[int], columnNumber: int) -> str:
         '''
         Возвращает самое встречаемое поле в столбце среди элементов кластера
         '''
         repetitions = {}
         for i in clusterNumbers:
-            key = self.players[i][columnNumber]
+            key = self.objects[i][columnNumber]
 
             if key in repetitions.keys():
                 repetitions[key] += 1
@@ -74,14 +77,19 @@ class KPrototypesClusterization():
         Возвращает массив с k центрами кластерами
         '''
         clusterCenters = []
+        numberColumns = len(self.objects[0])
     
         for i in range(self.k):
             if len(clusterContents[i]) > 0:
-                rating  = self.getAverageRating(clusterContents[i])
-                country = self.getMostPopularField(clusterContents[i], COUNTRY_COLUMN_NUMBER)
-                club    = self.getMostPopularField(clusterContents[i], CLUB_COLUMN_NUMBER)
-                
-                clusterCenters.append(["", rating, country, club])
+                clusterCenter = []
+                for columnNumber in range(numberColumns):
+                    if columnNumber in NUMERIC_COLUMNS:
+                        field = self.getAverageField(clusterContents[i], columnNumber)
+                    else:
+                        field = self.getMostPopularField(clusterContents[i], columnNumber)
+
+                    clusterCenter.append(field)
+                clusterCenters.append(clusterCenter)
             else:
                 # если кластер пуст
                 clusterCenters.append(oldClusterCenters[i].copy())
@@ -93,13 +101,13 @@ class KPrototypesClusterization():
         '''
         Возвращает матрицу растояний от элементов до центров кластеров
         '''
-        numbObjects = len(self.players)
+        numbObjects = len(self.objects)
         matrix = [ [0] * self.k for _ in range(numbObjects) ]
         distance = Distance()
 
         for i in range(numbObjects):
             for j in range(self.k):
-                matrix[i][j] = distance.goverDistance(self.players[i], clusterCenters[j])
+                matrix[i][j] = distance.goverDistance(self.objects[i], clusterCenters[j])
 
         return matrix
 
@@ -167,4 +175,5 @@ class KPrototypesClusterization():
         plt.legend()
         plt.ylabel('Номер кластера')
         plt.xlabel('Расстояния до центра кластера')
+        plt.xlim([0, 1])
         plt.show()

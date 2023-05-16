@@ -16,10 +16,10 @@ class EventMethod(Enum):
 
 
 class Test():
-    def __init__(self, players: List[List[str]], numberOfRuns: int):
-        self.players = players
+    def __init__(self, objects: List[List[str]], numberOfRuns: int):
+        self.objects = objects
         self.numberOfRuns = numberOfRuns
-        self.maxClusterNymbers = len(players)
+        self.maxClusterNymbers = len(objects)
         self.dissimilarityMatrix = self.createDissimilarityMatrix()
     
 
@@ -28,7 +28,7 @@ class Test():
         Возвращает матрицу несходства
         '''
         distance = Distance()
-        dissimilarityMatrix = distance.createDissimilarityMatrix(self.players)
+        dissimilarityMatrix = distance.createDissimilarityMatrix(self.objects)
 
         return dissimilarityMatrix
     
@@ -71,12 +71,12 @@ class Test():
         if method == method.KP_CLUST:
             sumAvgDistances = 0
             for _ in range(self.numberOfRuns):
-                kPrototypesClusterization = KPrototypesClusterization(self.players, numberClusters)
+                kPrototypesClusterization = KPrototypesClusterization(self.objects, numberClusters)
                 sumAvgDistances += self.calcAvgWithinСlusterDistance(kPrototypesClusterization.clusterContents)
 
             avgWithinСlusterDistance = sumAvgDistances / self.numberOfRuns
         else:
-            hybridClusterization = HybridClusterization(self.players, numberClusters)
+            hybridClusterization = HybridClusterization(self.objects, numberClusters)
             avgWithinСlusterDistance = self.calcAvgWithinСlusterDistance(hybridClusterization.clusterContents)
 
         return avgWithinСlusterDistance
@@ -109,7 +109,7 @@ class Test():
         '''
         Построения графика зависимости среднего расстояния в пределах кластера от кол-ва кластеров
         '''
-        plt.figure(figsize=(15, 8))
+        plt.figure(figsize=(13, 7))
         plt.plot(listHAClust[0], listHAClust[1], label = 'Hierarchical Agglomerative Clusterization')
         plt.plot(listKPClust[0], listKPClust[1], label = 'K-Prototypes Clusterization')
         plt.plot(listHybridClust[0], listHybridClust[1], label = 'Hybrid Clusterization')

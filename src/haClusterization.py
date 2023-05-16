@@ -155,7 +155,7 @@ class HAClusterization():
     def buildDendrogram(self) -> None:
         self.printMatrixInfo()
 
-        plt.figure(figsize=(15, 8))
+        plt.figure(figsize=(13, 7))
         plt.title("Hybrid Clusterization")
         dendrogram(self.matrixInfo)
         plt.show()

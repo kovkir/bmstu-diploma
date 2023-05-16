@@ -9,14 +9,14 @@ from distance import Distance
 
 
 class HybridClusterization():
-    players: List[List[str]]         # список игроков
-    numberClusters: int              # количество кластеров
+    objects: List[List[str]] # список объектов
+    numberClusters: int      # количество кластеров
     clusterContents: List[List[int]] # массив, содержащий в себе k массивов c номерами элементов, принадлежащих соответствующему кластеру
     clusterCenters: List[List[Union[str, int]]] # массив, содержащий в себе k центров кластеров
 
 
-    def __init__(self, players: List[List[str]], numberClusters: int):
-        self.players = players
+    def __init__(self, objects: List[List[str]], numberClusters: int):
+        self.objects = objects
         self.numberClusters = numberClusters
         self.clusterContents, self.clusterCenters = self.run()
 
@@ -24,13 +24,14 @@ class HybridClusterization():
     def run(self) -> List[List[int]]:
         distance = Distance()
         # построение матрицы несходства
-        dissimilarityMatrix = distance.createDissimilarityMatrix(self.players)
+        dissimilarityMatrix = distance.createDissimilarityMatrix(self.objects)
         # иерархическая часть метода
         haClusterization = HAClusterization(dissimilarityMatrix, self.numberClusters)
         # получение списка номеров объектов, входящих в каждый кластер
         clusterContents = [node.listClusterNumbers for node in haClusterization.nodes]
         # уточнение принадлежности элементов кластерам с помощью метода кластеризации центроидного типа
-        kPrototypesClusterization = KPrototypesClusterization(self.players, self.numberClusters, clusterContents)
+        kPrototypesClusterization = \
+            KPrototypesClusterization(self.objects, self.numberClusters, clusterContents)
 
         return kPrototypesClusterization.clusterContents, \
                kPrototypesClusterization.clusterCenters
@@ -40,13 +41,13 @@ class HybridClusterization():
         '''
         Возвращает матрицу растояний от элементов до центров кластеров
         '''
-        numbObjects = len(self.players)
+        numbObjects = len(self.objects)
         matrix = [ [0] * self.numberClusters for _ in range(numbObjects) ]
         distance = Distance()
 
         for i in range(numbObjects):
             for j in range(self.numberClusters):
-                matrix[i][j] = distance.goverDistance(self.players[i], clusterCenters[j])
+                matrix[i][j] = distance.goverDistance(self.objects[i], clusterCenters[j])
 
         return matrix
 
@@ -76,4 +77,5 @@ class HybridClusterization():
         plt.legend()
         plt.ylabel('Номер кластера')
         plt.xlabel('Расстояния до центра кластера')
+        plt.xlim([0, 1])
         plt.show()

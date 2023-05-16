@@ -12,17 +12,17 @@ EVALUATION_SILHOUETTES = 0
 ELBOW                  = 1
 
 # для инициализации
-CLUSTER_NUMBERS     = 40
-MAX_CLUSTER_NUMBERS = 100
+CLUSTER_NUMBERS     = 30
+MAX_CLUSTER_NUMBERS = 80
 NUMBER_OF_RUNS      = 10
 
+# используемые файлы
+FILE_NAME = "../docs/data/best_result.csv"
+# FILE_NAME = "../docs/data/fifa_players.csv"
+# FILE_NAME = "../docs/data/fifa_players2.csv"
+BACKUP_FILE_NAME = "../docs/data/backup.csv"
+
 # информация о данных в файле
-FILE_NAME = "../docs/fifa_players.csv"
-
-MIN_RATING = 71
-MAX_RATING = 94
-RATING_RANGE = MAX_RATING - MIN_RATING
-
-RATING_COLUMN_NUMBER  = 1
-COUNTRY_COLUMN_NUMBER = 2
-CLUB_COLUMN_NUMBER    = 3
+NUMERIC_COLUMNS = [1, 4]
+RANGES_LIST     = [23, 214500]
+NUMBER_OF_ROWS  = 3000
