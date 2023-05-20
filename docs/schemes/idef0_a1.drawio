@@ -1,0 +1,183 @@
+<mxfile host="65bd71144e">
+    <diagram id="ZWdekoGJzTY7XvXSQLcq" name="Страница 1">
+        <mxGraphModel dx="140" dy="144" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+            <root>
+                <mxCell id="0"/>
+                <mxCell id="1" parent="0"/>
+                <mxCell id="2" style="edgeStyle=none;html=1;fontSize=14;entryX=0.004;entryY=0.779;entryDx=0;entryDy=0;entryPerimeter=0;jumpStyle=arc;exitX=0.036;exitY=0.993;exitDx=0;exitDy=0;exitPerimeter=0;" parent="1" source="10" target="9" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <mxPoint x="270" y="283" as="targetPoint"/>
+                        <mxPoint x="130" y="330" as="sourcePoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="3" style="edgeStyle=none;html=1;fontSize=14;entryX=0;entryY=0.775;entryDx=0;entryDy=0;jumpStyle=arc;exitX=0.048;exitY=0.997;exitDx=0;exitDy=0;exitPerimeter=0;entryPerimeter=0;" parent="1" source="11" target="20" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <mxPoint x="270" y="390" as="targetPoint"/>
+                        <mxPoint x="70" y="398" as="sourcePoint"/>
+                        <Array as="points">
+                            <mxPoint x="240" y="400"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="4" style="edgeStyle=none;html=1;fontSize=14;jumpStyle=arc;exitX=0;exitY=0.2;exitDx=0;exitDy=0;exitPerimeter=0;" parent="1" source="12" target="20" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <mxPoint x="640" y="150" as="targetPoint"/>
+                        <mxPoint x="610" y="80" as="sourcePoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="5" style="edgeStyle=orthogonalEdgeStyle;html=1;fontSize=14;entryX=0.5;entryY=0;entryDx=0;entryDy=0;rounded=0;exitX=-0.009;exitY=0.189;exitDx=0;exitDy=0;exitPerimeter=0;jumpStyle=arc;" parent="1" source="13" target="9" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <mxPoint x="485" y="160" as="targetPoint"/>
+                        <mxPoint x="860" y="90" as="sourcePoint"/>
+                        <Array as="points">
+                            <mxPoint x="859" y="210"/>
+                            <mxPoint x="370" y="210"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="7" style="edgeStyle=none;html=1;fontSize=14;exitX=1.009;exitY=0.536;exitDx=0;exitDy=0;exitPerimeter=0;" parent="1" source="30" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <mxPoint x="1330" y="570" as="targetPoint"/>
+                        <mxPoint x="1220" y="560" as="sourcePoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="8" style="edgeStyle=orthogonalEdgeStyle;html=1;fontSize=14;entryX=0.5;entryY=1;entryDx=0;entryDy=0;rounded=0;jumpStyle=arc;" parent="1" target="9" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <mxPoint x="350" y="440" as="targetPoint"/>
+                        <mxPoint x="730" y="650" as="sourcePoint"/>
+                        <Array as="points">
+                            <mxPoint x="730" y="610"/>
+                            <mxPoint x="370" y="610"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="18" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" parent="1" source="9" target="20" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <mxPoint x="570" y="305.55555555555554" as="targetPoint"/>
+                        <Array as="points">
+                            <mxPoint x="490" y="305"/>
+                            <mxPoint x="490" y="375"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="9" value="&lt;span style=&quot;font-size: 14px;&quot;&gt;Построить матрицу несходства&lt;/span&gt;" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+                    <mxGeometry x="270" y="260" width="200" height="90" as="geometry"/>
+                </mxCell>
+                <mxCell id="10" value="Массив объектов &lt;br&gt;c&amp;nbsp;числовыми и &lt;br&gt;категориальными&lt;br&gt;признаками" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;fontSize=14;" parent="1" vertex="1">
+                    <mxGeometry x="120" y="250" width="140" height="80" as="geometry"/>
+                </mxCell>
+                <mxCell id="11" value="Количество &lt;br&gt;кластеров" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;fontSize=14;" parent="1" vertex="1">
+                    <mxGeometry x="120" y="350" width="100" height="50" as="geometry"/>
+                </mxCell>
+                <mxCell id="12" value="Критерий связи&lt;br&gt;кластеров&amp;nbsp;" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;fontSize=14;" parent="1" vertex="1">
+                    <mxGeometry x="610" y="150" width="130" height="50" as="geometry"/>
+                </mxCell>
+                <mxCell id="13" value="Мера&lt;br&gt;расстояний" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;fontSize=14;" parent="1" vertex="1">
+                    <mxGeometry x="860" y="150" width="100" height="50" as="geometry"/>
+                </mxCell>
+                <mxCell id="15" value="Кластеры с &lt;br&gt;номерами входящих &lt;br&gt;в них объектов" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;fontSize=14;" parent="1" vertex="1">
+                    <mxGeometry x="1185" y="510" width="160" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="16" value="ЭВМ" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;fontSize=14;" parent="1" vertex="1">
+                    <mxGeometry x="730" y="620" width="50" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="17" value="A1" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;fontSize=14;" parent="1" vertex="1">
+                    <mxGeometry x="430" y="320" width="40" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="19" value="&lt;font style=&quot;font-size: 14px;&quot;&gt;Матрица &lt;br&gt;несходства&lt;br&gt;&lt;br&gt;&lt;/font&gt;" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" parent="1" vertex="1">
+                    <mxGeometry x="490" y="260" width="100" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="23" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;fontSize=14;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" parent="1" source="20" target="25" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <mxPoint x="800" y="570" as="targetPoint"/>
+                        <Array as="points">
+                            <mxPoint x="730" y="375"/>
+                            <mxPoint x="730" y="465"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="32" style="edgeStyle=orthogonalEdgeStyle;rounded=0;jumpStyle=arc;html=1;entryX=-0.003;entryY=0.559;entryDx=0;entryDy=0;fontSize=14;entryPerimeter=0;" parent="1" target="27" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <mxPoint x="220" y="330" as="sourcePoint"/>
+                        <Array as="points">
+                            <mxPoint x="220" y="544"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="33" style="edgeStyle=orthogonalEdgeStyle;rounded=0;jumpStyle=arc;html=1;entryX=0;entryY=0.779;entryDx=0;entryDy=0;fontSize=14;entryPerimeter=0;" parent="1" target="27" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <mxPoint x="200" y="400" as="sourcePoint"/>
+                        <Array as="points">
+                            <mxPoint x="200" y="400"/>
+                            <mxPoint x="200" y="564"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="20" value="&lt;span style=&quot;font-size: 14px;&quot;&gt;Примененить агломеративный подход иерархической кластеризации&lt;/span&gt;" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+                    <mxGeometry x="510" y="330" width="200" height="90" as="geometry"/>
+                </mxCell>
+                <mxCell id="21" value="A2" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;fontSize=14;" parent="1" vertex="1">
+                    <mxGeometry x="670" y="390" width="40" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="24" value="Список узлов &lt;br&gt;неполного&lt;br&gt;бинарного&lt;br&gt;дерева &lt;br&gt;кластеров" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;fontSize=14;" parent="1" vertex="1">
+                    <mxGeometry x="730" y="315" width="110" height="100" as="geometry"/>
+                </mxCell>
+                <mxCell id="29" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0.001;entryY=0.341;entryDx=0;entryDy=0;fontSize=14;entryPerimeter=0;" parent="1" source="25" target="27" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="35" style="edgeStyle=orthogonalEdgeStyle;rounded=0;jumpStyle=arc;html=1;entryX=0.5;entryY=1;entryDx=0;entryDy=0;fontSize=14;" parent="1" target="20" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <mxPoint x="610" y="610" as="sourcePoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="25" value="&lt;font style=&quot;font-size: 14px;&quot;&gt;Получить списки номеров объектов, входящих в каждый кластер &lt;br&gt;(узел неполного &lt;br&gt;бинарного дерева)&lt;/font&gt;" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+                    <mxGeometry x="750" y="420" width="200" height="90" as="geometry"/>
+                </mxCell>
+                <mxCell id="26" value="A3" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;fontSize=14;" parent="1" vertex="1">
+                    <mxGeometry x="910" y="480" width="40" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="31" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;fontSize=14;entryX=0.597;entryY=0.002;entryDx=0;entryDy=0;entryPerimeter=0;" parent="1" target="27" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <mxPoint x="1140.2307692307693" y="300.0000000000001" as="targetPoint"/>
+                        <mxPoint x="860" y="210" as="sourcePoint"/>
+                        <Array as="points">
+                            <mxPoint x="1109" y="210"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="34" style="edgeStyle=orthogonalEdgeStyle;rounded=0;jumpStyle=arc;html=1;fontSize=14;entryX=0.599;entryY=1.003;entryDx=0;entryDy=0;entryPerimeter=0;" parent="1" target="27" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <mxPoint x="1140" y="740" as="targetPoint"/>
+                        <mxPoint x="730" y="610" as="sourcePoint"/>
+                        <Array as="points">
+                            <mxPoint x="810" y="610"/>
+                            <mxPoint x="1110" y="610"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="36" style="edgeStyle=orthogonalEdgeStyle;rounded=0;jumpStyle=arc;html=1;entryX=0.5;entryY=1;entryDx=0;entryDy=0;fontSize=14;" parent="1" target="25" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <mxPoint x="850" y="610" as="sourcePoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="38" style="edgeStyle=none;html=1;exitX=1.008;exitY=0.173;exitDx=0;exitDy=0;exitPerimeter=0;" edge="1" parent="1" source="27">
+                    <mxGeometry relative="1" as="geometry">
+                        <mxPoint x="1330" y="510" as="targetPoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="27" value="&lt;span style=&quot;font-size: 14px;&quot;&gt;Уточнить принадлежность элементов к кластерам с помощью метода кластеризации &lt;br&gt;центроидного типа&amp;nbsp;&lt;/span&gt;" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+                    <mxGeometry x="990" y="494" width="200" height="90" as="geometry"/>
+                </mxCell>
+                <mxCell id="28" value="Списки номеров &lt;br&gt;объектов,&amp;nbsp;&lt;br&gt;входящих в &lt;br&gt;каждый кластер" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;fontSize=14;" parent="1" vertex="1">
+                    <mxGeometry x="970" y="410" width="130" height="80" as="geometry"/>
+                </mxCell>
+                <mxCell id="30" value="A4" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;fontSize=14;" parent="1" vertex="1">
+                    <mxGeometry x="1150" y="554" width="40" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="39" value="&lt;font style=&quot;font-size: 14px;&quot;&gt;Центры кластеров&lt;/font&gt;" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+                    <mxGeometry x="1185" y="480" width="150" height="30" as="geometry"/>
+                </mxCell>
+            </root>
+        </mxGraphModel>
+    </diagram>
+</mxfile>

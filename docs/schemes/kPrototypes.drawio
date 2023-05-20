@@ -1,0 +1,86 @@
+<mxfile host="65bd71144e">
+    <diagram id="tPg7lvVMtvuBfPQgrAko" name="Страница 1">
+        <mxGraphModel dx="1011" dy="809" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+            <root>
+                <mxCell id="0"/>
+                <mxCell id="1" parent="0"/>
+                <mxCell id="17" style="edgeStyle=none;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;entryPerimeter=0;fontSize=12;endArrow=none;endFill=0;dashed=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;exitPerimeter=0;" parent="1" source="7" target="8" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <mxPoint x="460" y="73" as="sourcePoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="64" style="edgeStyle=none;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;exitPerimeter=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" source="7" target="21" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="7" value="Начало" style="strokeWidth=1;html=1;shape=mxgraph.flowchart.terminator;whiteSpace=wrap;strokeColor=default;gradientColor=none;" parent="1" vertex="1">
+                    <mxGeometry x="280" y="54.85" width="150" height="52.5" as="geometry"/>
+                </mxCell>
+                <mxCell id="8" value="" style="strokeWidth=1;html=1;shape=mxgraph.flowchart.annotation_2;align=left;labelPosition=right;pointerEvents=1;strokeColor=default;fontSize=13;gradientColor=none;" parent="1" vertex="1">
+                    <mxGeometry x="470" y="12.19" width="50" height="137.81" as="geometry"/>
+                </mxCell>
+                <mxCell id="9" value="&lt;span style=&quot;font-size: 12px;&quot;&gt;Метод кластеризации k-прототипов&lt;/span&gt;" style="text;html=1;align=left;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;fontSize=13;strokeWidth=1;" parent="1" vertex="1">
+                    <mxGeometry x="507.5" y="12.190000000000001" width="230" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="10" value="Вход:" style="text;html=1;align=left;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;fontSize=12;" parent="1" vertex="1">
+                    <mxGeometry x="507.5" y="40" width="50" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="11" value="&lt;div style=&quot;text-align: center;&quot;&gt;&lt;span style=&quot;background-color: initial;&quot;&gt;списки номеров объектов, входящих в&amp;nbsp;&lt;/span&gt;&lt;/div&gt;&lt;div style=&quot;&quot;&gt;&lt;span style=&quot;background-color: initial;&quot;&gt;каждый кластер (clusterContents&lt;/span&gt;&lt;span style=&quot;background-color: initial;&quot;&gt;),&lt;/span&gt;&lt;/div&gt;&lt;div style=&quot;&quot;&gt;массив объектов с числовыми и&lt;br&gt;категориальными признаками (objects),&lt;span style=&quot;background-color: initial;&quot;&gt;&lt;br&gt;&lt;/span&gt;&lt;/div&gt;кол-во кластеров (numberClusters)." style="text;html=1;align=left;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;fontSize=12;" parent="1" vertex="1">
+                    <mxGeometry x="520" y="57.5" width="250" height="90" as="geometry"/>
+                </mxCell>
+                <mxCell id="65" style="edgeStyle=none;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;entryPerimeter=0;" parent="1" source="21" target="44" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="21" value="Вычисление центров кластеров &lt;br&gt;на основе списков номеров объектов, входячих в &lt;br&gt;каждую группу" style="rounded=0;whiteSpace=wrap;html=1;strokeColor=default;strokeWidth=1;fontSize=12;gradientColor=none;" parent="1" vertex="1">
+                    <mxGeometry x="252.5" y="147.5" width="205" height="80" as="geometry"/>
+                </mxCell>
+                <mxCell id="66" style="edgeStyle=none;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;exitPerimeter=0;" parent="1" source="44" target="46" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="44" value="Начало цикла по нахождению&lt;br&gt;новых центров кластеров" style="strokeWidth=1;html=1;shape=mxgraph.flowchart.loop_limit;whiteSpace=wrap;" parent="1" vertex="1">
+                    <mxGeometry x="250" y="260" width="210" height="80" as="geometry"/>
+                </mxCell>
+                <mxCell id="67" style="edgeStyle=none;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" source="46" target="49" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="46" value="Сохранить текущие центры кластеров (prevClusterCenters)" style="rounded=0;whiteSpace=wrap;html=1;strokeColor=default;strokeWidth=1;fontSize=12;gradientColor=none;" parent="1" vertex="1">
+                    <mxGeometry x="252.5" y="370" width="205" height="80" as="geometry"/>
+                </mxCell>
+                <mxCell id="68" style="edgeStyle=none;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;" parent="1" source="49" target="50" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="49" value="Для каждого объекта в наборе данных определить ближайший к нему центр кластера &lt;br&gt;(пересчитать&lt;span style=&quot;text-align: left;&quot;&gt;&amp;nbsp;clusterContents&lt;/span&gt;)" style="rounded=0;whiteSpace=wrap;html=1;strokeColor=default;strokeWidth=1;fontSize=12;gradientColor=none;" parent="1" vertex="1">
+                    <mxGeometry x="252.5" y="480" width="205" height="80" as="geometry"/>
+                </mxCell>
+                <mxCell id="69" style="edgeStyle=none;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=1;entryDx=0;entryDy=0;entryPerimeter=0;" parent="1" source="50" target="53" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="50" value="Для каждого кластера вычислить новый центроид (новый центр)&lt;br&gt;(сlusterCenters)&amp;nbsp;" style="rounded=0;whiteSpace=wrap;html=1;strokeColor=default;strokeWidth=1;fontSize=12;gradientColor=none;" parent="1" vertex="1">
+                    <mxGeometry x="252.5" y="595" width="205" height="80" as="geometry"/>
+                </mxCell>
+                <mxCell id="70" style="edgeStyle=none;html=1;exitX=0.5;exitY=0;exitDx=0;exitDy=0;exitPerimeter=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;entryPerimeter=0;" parent="1" source="53" target="59" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="53" value="Пока предыдущие центры&lt;br&gt;кластеров отличаются&lt;br&gt;&amp;nbsp;от&amp;nbsp;новых &lt;br&gt;(prevClusterCenters != сlusterCenters)&amp;nbsp;" style="strokeWidth=1;html=1;shape=mxgraph.flowchart.loop_limit;whiteSpace=wrap;direction=west;" parent="1" vertex="1">
+                    <mxGeometry x="250" y="710" width="210" height="80" as="geometry"/>
+                </mxCell>
+                <mxCell id="59" value="Конец" style="strokeWidth=1;html=1;shape=mxgraph.flowchart.terminator;whiteSpace=wrap;strokeColor=default;gradientColor=none;" parent="1" vertex="1">
+                    <mxGeometry x="280" y="821.88" width="150" height="52.5" as="geometry"/>
+                </mxCell>
+                <mxCell id="71" style="edgeStyle=none;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;entryPerimeter=0;fontSize=12;endArrow=none;endFill=0;dashed=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;exitPerimeter=0;" parent="1" source="59" target="72" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <mxPoint x="430" y="848.1400000000001" as="sourcePoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="72" value="" style="strokeWidth=1;html=1;shape=mxgraph.flowchart.annotation_2;align=left;labelPosition=right;pointerEvents=1;strokeColor=default;fontSize=13;gradientColor=none;" parent="1" vertex="1">
+                    <mxGeometry x="457.5" y="810.01" width="50" height="76.25" as="geometry"/>
+                </mxCell>
+                <mxCell id="73" value="Возвращает:" style="text;html=1;align=left;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;fontSize=12;" parent="1" vertex="1">
+                    <mxGeometry x="490" y="810.01" width="100" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="74" value="&lt;br&gt;центры кластеров (clusterCenters),&lt;br&gt;кластеры с номерами входящих &lt;br&gt;в них объектов (clusterContents)." style="text;html=1;align=left;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;fontSize=12;" parent="1" vertex="1">
+                    <mxGeometry x="500" y="816.26" width="220" height="70" as="geometry"/>
+                </mxCell>
+            </root>
+        </mxGraphModel>
+    </diagram>
+</mxfile>
