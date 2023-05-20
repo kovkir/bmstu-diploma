@@ -6,7 +6,8 @@ from haClusterization import HAClusterization
 from kPrototypesClusterization import KPrototypesClusterization
 from hybridClusterization import HybridClusterization
 from distance import Distance
-from test import Test
+from testElbow import TestElbow
+from testSilhouettes import TestSilhouettes
 from constants import *
 from color import *
 
@@ -14,7 +15,7 @@ from color import *
 class Window():
     window: Tk
     numberClusters: Entry
-    maxNumberClusters: Entry
+    numberObjects: Entry
     numberRuns: Entry
     methodVar: IntVar
     comparisonVar: IntVar
@@ -49,12 +50,12 @@ class Window():
         self.numberClusters = Entry(font = ("Arial", 17))
         self.numberClusters.place(width = windowWidth * 0.3, height = 30, x = windowWidth * 0.6, y = 50)
 
-        Label(text = "Максимальное количество кластеров", 
+        Label(text = "Количество обрабатываемых объектов", 
               font = ("Arial", 16), bg = PURPLE_LIGHT, fg = PURPLE_SUPER_DARK)\
             .place(width = windowWidth * 0.5, height = 30, x = windowWidth * 0.1, y = 90)
 
-        self.maxNumberClusters = Entry(font = ("Arial", 17))
-        self.maxNumberClusters.place(width = windowWidth * 0.3, height = 30, x = windowWidth * 0.6, y = 90)
+        self.numberObjects = Entry(font = ("Arial", 17))
+        self.numberObjects.place(width = windowWidth * 0.3, height = 30, x = windowWidth * 0.6, y = 90)
 
         Label(text = "Количество прогонов для K-прототипов\nпри сравнении методов", 
               font = ("Arial", 16), bg = PURPLE_LIGHT, fg = PURPLE_SUPER_DARK)\
@@ -153,35 +154,35 @@ class Window():
             .place(width = windowWidth * 0.8 - 4, height = 36, x = windowWidth * 0.1 + 2, y = windowHeight - 48)
     
 
-    def getMaxNumberClusters(self) -> Union[int, None]:
+    def getNumberObjects(self) -> Union[int, None]:
         try:
-            maxNumberClusters = int(self.maxNumberClusters.get())
+            numberObjects = int(self.numberObjects.get())
         except:
-            maxNumberClusters = None
+            numberObjects = None
         
-        if maxNumberClusters == None or \
-           maxNumberClusters < 1 or maxNumberClusters > NUMBER_OF_ROWS:
+        if numberObjects == None or \
+           numberObjects < 1 or numberObjects > NUMBER_OF_ROWS:
             messagebox.showwarning("Ошибка",
-                "Невозможное значение максимального количества кластеров!\n"
+                "Невозможное значение количества обрабатываемых объектов!\n"
                 "Ожидался ввод натурального числа.")
             return
         
-        return maxNumberClusters
+        return numberObjects
     
 
-    def getNumberClusters(self, maxNumberClusters: int) -> Union[int, None]:
+    def getNumberClusters(self, numberObjects: int) -> Union[int, None]:
         try:
             numberClusters = int(self.numberClusters.get())
         except:
             numberClusters = None
         
         if numberClusters == None or \
-           numberClusters < 1 or numberClusters > maxNumberClusters:
+           numberClusters < 1 or numberClusters > numberObjects:
             messagebox.showwarning("Ошибка",
                 "Невозможное значение количества кластеров!\n"
                 "Ожидался ввод натурального числа.\n"
                 "Также количество кластеров должно быть не больше "
-                "максимального количества.")
+                "количества обрабатываемых объектов.")
             return
         
         return numberClusters
@@ -203,15 +204,15 @@ class Window():
     
 
     def doClustering(self):
-        maxNumberClusters = self.getMaxNumberClusters()
-        if maxNumberClusters == None:
+        numberObjects = self.getNumberObjects()
+        if numberObjects == None:
             return
 
-        numberClusters = self.getNumberClusters(maxNumberClusters)
+        numberClusters = self.getNumberClusters(numberObjects)
         if numberClusters == None:
             return
         
-        objects = self.objects[:maxNumberClusters]
+        objects = self.objects[:numberObjects]
 
         if self.methodVar.get() == HA:
             distance = Distance()
@@ -230,22 +231,23 @@ class Window():
 
 
     def doComparison(self):
-        maxNumberClusters = self.getMaxNumberClusters()
-        if maxNumberClusters == None:
+        numberObjects = self.getNumberObjects()
+        if numberObjects == None:
             return
 
         numberRuns = self.getNumberRuns()
         if numberRuns == None:
             return
         
-        objects = self.objects[:maxNumberClusters]
+        objects = self.objects[:numberObjects]
 
         if self.comparisonVar.get() == ELBOW:
-            test = Test(objects, numberRuns)
+            test = TestElbow(objects, numberRuns)
             test.comparisonMethods()
 
         elif self.comparisonVar.get() == EVALUATION_SILHOUETTES:
-           return
+            test = TestSilhouettes(objects, numberRuns)
+            test.comparisonMethods()
 
 
     def aboutProgram(self):
@@ -255,8 +257,8 @@ class Window():
 
      
     def run(self):
-        self.numberClusters.insert(0, CLUSTER_NUMBERS)
-        self.maxNumberClusters.insert(0, MAX_CLUSTER_NUMBERS)
+        self.numberClusters.insert(0, NUMBER_OF_CLUSTERS)
+        self.numberObjects.insert(0, NUMBER_OF_OBJECTS)
         self.numberRuns.insert(0, NUMBER_OF_RUNS)
 
         self.window.mainloop()

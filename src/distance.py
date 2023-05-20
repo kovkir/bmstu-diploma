@@ -37,7 +37,7 @@ class Distance():
 
     def createDissimilarityMatrix(self, objects: List[List[str]]) -> List[List[float]]:
         '''
-        Построение матрицы несходств с помощью расстояния Говера
+        Построение матрицы несходства с помощью расстояния Говера
         '''
         numbObjects = len(objects)
         matrix = [ [0] * numbObjects for _ in range(numbObjects) ]

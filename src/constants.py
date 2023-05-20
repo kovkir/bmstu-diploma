@@ -12,9 +12,9 @@ EVALUATION_SILHOUETTES = 0
 ELBOW                  = 1
 
 # для инициализации
-CLUSTER_NUMBERS     = 30
-MAX_CLUSTER_NUMBERS = 80
-NUMBER_OF_RUNS      = 10
+NUMBER_OF_CLUSTERS = 30
+NUMBER_OF_OBJECTS  = 80
+NUMBER_OF_RUNS     = 10
 
 # используемые файлы
 FILE_NAME = "../docs/data/best_result.csv"

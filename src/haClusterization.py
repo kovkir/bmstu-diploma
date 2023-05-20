@@ -19,9 +19,7 @@ class HAClusterization():
     dissimilarityMatrix: List[List[float]] # матрица несходства
     nodes: List[Node]                      # список узлов дерева
     tree: Union[Node, None]                # корень дерева
-
-    matrixInfo: List[List[float]]                         # для построения dendrogram
-    listAvgDistance: List[Union[List[int], List[float]]]  # список для графика
+    matrixInfo: List[List[float]]          # для построения dendrogram
 
 
     def __init__(self, dissimilarityMatrix: List[List[float]], numberClusters: int=1):
@@ -29,7 +27,6 @@ class HAClusterization():
         self.nodes = []
         self.addNodes()
         self.matrixInfo = []
-        self.listAvgDistance = [[], []]
         self.tree = self.buildTree(numberClusters)
 
 
@@ -61,9 +58,10 @@ class HAClusterization():
         # вычисление среднего расстояния между элементами класстера
         sumDistances = 0
         countDistances = 0
+        size = len(listClusterNumbers)
 
-        for i in range(len(listClusterNumbers) - 1):
-            for j in range(i + 1, len(listClusterNumbers)):
+        for i in range(size - 1):
+            for j in range(i + 1, size):
                 sumDistances += self.dissimilarityMatrix[listClusterNumbers[i]][listClusterNumbers[j]]
                 countDistances += 1
 
@@ -97,9 +95,6 @@ class HAClusterization():
 
 
     def buildTree(self, numberClusters: int) -> Node:
-        self.listAvgDistance[0].append(len(self.nodes))
-        self.listAvgDistance[1].append(0)
-        
         while len(self.nodes) > numberClusters:
             iMinDistance, jMinDistance = self.getClusterNumbersWithMinDistance()
 
@@ -119,9 +114,7 @@ class HAClusterization():
                 )
             )
 
-            self.listAvgDistance[0].append(len(self.nodes))
-            self.listAvgDistance[1].append(self.calcAvgWithinСlusterDistance())
-
+            # для построения dendrogram
             self.matrixInfo.append(
                 [
                     firstNode.clusterNumber, 
@@ -141,15 +134,9 @@ class HAClusterization():
 
         for i in range(len(self.matrixInfo)):
             print("{:5.0f} {:5.0f} {:>7.3f} {:5.0f}".format(
-                self.matrixInfo[i][0], self.matrixInfo[i][1], self.matrixInfo[i][2], self.matrixInfo[i][3]))
-
-
-    def printListAvgDistance(self) -> None:
-        print("\n --- ListAvgDistance ---\n")
-
-        for i in range(len(self.listAvgDistance[0])):
-            print("{:5d} {:>7.3f}".format(
-                self.listAvgDistance[0][i], self.listAvgDistance[1][i]))
+                self.matrixInfo[i][0], self.matrixInfo[i][1], 
+                self.matrixInfo[i][2], self.matrixInfo[i][3]))
+        print()
 
 
     def buildDendrogram(self) -> None:
