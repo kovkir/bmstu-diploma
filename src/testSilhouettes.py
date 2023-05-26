@@ -146,10 +146,14 @@ class TestSilhouettes():
 
 
     def comparisonMethods(self) -> None:
+        '''
+        Сравнение методов разбиения
+        '''
         listSilhouetteCoeffHA = []
         listSilhouetteCoeffKP = []
         listSilhouetteCoeffHybrid = []
- 
+
+        print()
         for k in range(2, self.numberObjects + 1):
             listSilhouetteCoeffHA.append(self.calcAvgSilhouetteCoeffForMethod(EventMethod.HA_CLUST, k))
             listSilhouetteCoeffKP.append(self.calcAvgSilhouetteCoeffForMethod(EventMethod.KP_CLUST, k))
@@ -177,7 +181,7 @@ class TestSilhouettes():
         '''
         Построение таблицы со средними значениями коэффициента силуэта
         '''
-        tableHeader = ["Кол-во кластеров", "Hierarchical", "K-Prototypes", "Hybrid"]
+        tableHeader = ["Кол-во кластеров", "Иерархический", "K-прототипов", "Гибридный"]
         table = PrettyTable(tableHeader)
 
         for i in range(len(listСlusterNumbers)):
@@ -187,6 +191,7 @@ class TestSilhouettes():
                 round(listSilhouetteCoeffKP[i], 3), 
                 round(listSilhouetteCoeffHybrid[i], 3)
             ])
+        print("\n  --- Таблица со средними значениями коэффициента силуэта ---")
         print(table)
 
         
@@ -200,9 +205,9 @@ class TestSilhouettes():
         Построения графика зависимости среднего значения коэффициента силуэта от кол-ва кластеров
         '''
         plt.figure(figsize=(13, 7))
-        plt.plot(listСlusterNumbers, listAvgDistanceHA, label = 'Hierarchical Agglomerative Clusterization')
-        plt.plot(listСlusterNumbers, listAvgDistanceKP, label = 'K-Prototypes Clusterization')
-        plt.plot(listСlusterNumbers, listAvgDistanceHybrid, label = 'Hybrid Clusterization')
+        plt.plot(listСlusterNumbers, listAvgDistanceHA, label = 'Иерархический метод кластеризации')
+        plt.plot(listСlusterNumbers, listAvgDistanceKP, label = 'Метод кластеризации K-прототипов')
+        plt.plot(listСlusterNumbers, listAvgDistanceHybrid, label = 'Гибридный метод кластеризации')
         plt.grid(True)
         plt.legend()
         plt.ylabel('Среднее значение коэффициента силуэта')

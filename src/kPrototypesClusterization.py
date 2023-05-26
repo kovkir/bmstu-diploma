@@ -3,6 +3,7 @@
 from matplotlib import pyplot as plt
 from typing import List, Union
 from random import randint
+from prettytable import PrettyTable
 
 from distance import Distance
 from constants import *
@@ -150,7 +151,7 @@ class KPrototypesClusterization():
         return clusterContents, clusterCenters
     
 
-    def findDistancesToClusterCenters(self):
+    def findDistancesToClusterCenters(self) -> List[List[int]]:
         '''
         Нахождение расстояний между элементами кластеров и их центрами для построения графика
         '''
@@ -161,16 +162,38 @@ class KPrototypesClusterization():
         for iCenter in range(self.k):
             for iElem in self.clusterContents[iCenter]:
                 distsToCenter.append(matrixDists[iElem][iCenter])
-                centerNumbers.append(iCenter)
+                centerNumbers.append(iCenter + 1)
 
         return distsToCenter, centerNumbers
     
 
+    @staticmethod
+    def printInfoTable(distsToCenter: List[int], centerNumbers: List[int]) -> None:
+        '''
+        Построение таблицы результатов кластеризации 
+        '''
+        tableHeader = ["Номер объекта", "Номер центроида", "Расстояние до центроида"]
+        table = PrettyTable(tableHeader)
+
+        for i in range(len(distsToCenter)):
+            table.add_row([
+                i + 1,
+                centerNumbers[i],
+                round(distsToCenter[i], 3)
+            ])
+        print("\n    --- Результаты кластеризации методом k-прототипов ---")
+        print(table)
+
+
     def buildGraph(self) -> None:
+        '''
+        Построение графика
+        '''
         distsToCenter, centerNumbers = self.findDistancesToClusterCenters()
+        self.printInfoTable(distsToCenter, centerNumbers)
 
         plt.figure(figsize=(10, 7))
-        plt.plot(distsToCenter, centerNumbers, 'or', label = 'K-Prototypes Clusterization')
+        plt.plot(distsToCenter, centerNumbers, 'or', label = 'Метод кластеризации K-прототипов')
         plt.grid(True)
         plt.legend()
         plt.ylabel('Номер кластера')

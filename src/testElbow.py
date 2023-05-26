@@ -36,7 +36,7 @@ class TestElbow():
 
     def calcAvgDistance(self, listObjectNumbers: List[int]) -> float:
         '''
-        Возвращает среднее расстояние между элементами класстера
+        Возвращает среднее расстояние между элементами кластера
         '''
         sumDistances = 0
         countDistances = 0
@@ -91,17 +91,21 @@ class TestElbow():
 
 
     def comparisonMethods(self) -> None:
+        '''
+        Сравнение методов разбиения
+        '''
         listAvgDistanceHA = []
         listAvgDistanceKP = []
         listAvgDistanceHybrid = []
 
+        print()
         for k in range(1, self.numberObjects + 1):
             listAvgDistanceHA.append(self.calcAvgWithinСlusterDistanceForMethod(EventMethod.HA_CLUST, k))
             listAvgDistanceKP.append(self.calcAvgWithinСlusterDistanceForMethod(EventMethod.KP_CLUST, k))
             listAvgDistanceHybrid.append(self.calcAvgWithinСlusterDistanceForMethod(EventMethod.HYBRID_CLUST, k))
 
             print("Проведено сравнение {:d} кластеров из {:d}".format(k, self.numberObjects))
-        
+
         listСlusterNumbers = [i for i in range(1, self.numberObjects + 1)]
 
         self.printAvgDistanceTable(
@@ -122,7 +126,7 @@ class TestElbow():
         '''
         Построение таблицы со средними расстояниями в пределах кластера
         '''
-        tableHeader = ["Кол-во кластеров", "Hierarchical", "K-Prototypes", "Hybrid"]
+        tableHeader = ["Кол-во кластеров", "Иерархический", "K-прототипов", "Гибридный"]
         table = PrettyTable(tableHeader)
 
         for i in range(len(listСlusterNumbers)):
@@ -132,6 +136,7 @@ class TestElbow():
                 round(listAvgDistanceKP[i], 3), 
                 round(listAvgDistanceHybrid[i], 3)
             ])
+        print("\n  --- Таблица со средними расстояниями в пределах кластера ---")
         print(table)
 
 
@@ -142,12 +147,12 @@ class TestElbow():
             listAvgDistanceKP: List[float], 
             listAvgDistanceHybrid: List[float]) -> None:
         '''
-        Построения графика зависимости среднего расстояния в пределах кластера от кол-ва кластеров
+        Построение графика зависимости среднего расстояния в пределах кластера от кол-ва кластеров
         '''
         plt.figure(figsize=(13, 7))
-        plt.plot(listСlusterNumbers, listAvgDistanceHA, label = 'Hierarchical Agglomerative Clusterization')
-        plt.plot(listСlusterNumbers, listAvgDistanceKP, label = 'K-Prototypes Clusterization')
-        plt.plot(listСlusterNumbers, listAvgDistanceHybrid, label = 'Hybrid Clusterization')
+        plt.plot(listСlusterNumbers, listAvgDistanceHA, label = 'Иерархический метод кластеризации')
+        plt.plot(listСlusterNumbers, listAvgDistanceKP, label = 'Метод кластеризации K-прототипов')
+        plt.plot(listСlusterNumbers, listAvgDistanceHybrid, label = 'Гибридный метод кластеризации')
         plt.grid(True)
         plt.legend()
         plt.ylabel('Среднее расстояние в пределах кластера')

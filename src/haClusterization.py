@@ -3,13 +3,14 @@
 from scipy.cluster.hierarchy import dendrogram
 from matplotlib import pyplot as plt
 from typing import List, Union
+from prettytable import PrettyTable
 
 
 class Node():
     def __init__(self, clusterNumber: int, listClusterNumbers: List[int], avgDistance: float, left=None, right=None):
         self.clusterNumber = clusterNumber           # номер кластера
         self.listClusterNumbers = listClusterNumbers # список номеров кластеров, входящих в текщий кластер
-        self.avgDistance = avgDistance               # среднее расстояние между элементами класстера
+        self.avgDistance = avgDistance               # среднее расстояние между элементами кластера
 
         self.left  = left
         self.right = right
@@ -31,16 +32,24 @@ class HAClusterization():
 
 
     def addNodes(self) -> None:
+        '''
+        Размещение каждого объекта в отдельный кластер 
+        '''
         for i in range(len(self.dissimilarityMatrix)):
             self.nodes.append(Node(i, [i], 0))
 
 
     def nodeClusterNumber(self, nodeIndex: int) -> int:
+        '''
+        Возвращает номер кластера узла
+        '''
         return self.nodes[nodeIndex].clusterNumber
 
 
     def getClusterNumbersWithMinDistance(self) -> List[int]:
-        # индексы узлов, содержащих номера кластеров с минимальным растояние между ними
+        '''
+        Возвращает индексы узлов, содержащих номера кластеров с минимальным растояние между ними
+        '''
         iMinDistance = 0
         jMinDistance = 1
         
@@ -55,7 +64,9 @@ class HAClusterization():
     
 
     def calcAvgDistance(self, listClusterNumbers: List[int]) -> float:
-        # вычисление среднего расстояния между элементами класстера
+        '''
+        Возвращает среднее расстояние между элементами кластера
+        '''
         sumDistances = 0
         countDistances = 0
         size = len(listClusterNumbers)
@@ -67,9 +78,11 @@ class HAClusterization():
 
         return sumDistances / countDistances if countDistances != 0 else 0
     
-    
+
     def calcAvgWithinСlusterDistance(self) -> float:
-        # вычисление среднего расстояния в пределах класстера
+        '''
+        Возвращает среднее расстояние в пределах кластера
+        '''
         sumAvgDistances = 0
         countAvgDistances = 0
 
@@ -81,6 +94,9 @@ class HAClusterization():
 
 
     def updateDissimilarityMatrix(self, clusterNumber1: int, clusterNumber2: int) -> None:
+        '''
+        Дополнение матрицы несходства
+        '''
         # добавление столбца с расстояниями до нового кластера в матрицу несходства
         for i in range(len(self.dissimilarityMatrix)):
             # расстояние между двумя кластерами -- самое длинное расстояние между двумя точками в каждом кластере (полная связь)
@@ -94,7 +110,11 @@ class HAClusterization():
         self.dissimilarityMatrix[-1].append(0)
 
 
-    def buildTree(self, numberClusters: int) -> Node:
+    def buildTree(self, numberClusters: int) -> Union[Node, None]:
+        '''
+        Построение бинарного дерева кластеров
+        (если оно полное, то возвращается корень дерева)
+        '''
         while len(self.nodes) > numberClusters:
             iMinDistance, jMinDistance = self.getClusterNumbersWithMinDistance()
 
@@ -129,20 +149,32 @@ class HAClusterization():
         return self.nodes[0] if numberClusters == 1 else None 
     
 
-    def printMatrixInfo(self) -> None:
-        print("\n     --- MatrixInfo ---\n")
+    @staticmethod
+    def printInfoTable(matrixInfo: List[List[float]]) -> None:
+        '''
+        Построение таблицы со значениями из дендрограммы
+        '''
+        tableHeader = ["Кластер 1", "Кластер 2", "Среднее расстояние", "Кол-во объектов"]
+        table = PrettyTable(tableHeader)
 
-        for i in range(len(self.matrixInfo)):
-            print("{:5.0f} {:5.0f} {:>7.3f} {:5.0f}".format(
-                self.matrixInfo[i][0], self.matrixInfo[i][1], 
-                self.matrixInfo[i][2], self.matrixInfo[i][3]))
-        print()
-
+        for i in range(len(matrixInfo)):
+            table.add_row([
+                matrixInfo[i][0], 
+                matrixInfo[i][1],
+                round(matrixInfo[i][2], 3), 
+                matrixInfo[i][3]
+            ])
+        print("\n    --- Результаты кластеризации иерархическим методом ---")
+        print(table)
+ 
 
     def buildDendrogram(self) -> None:
-        self.printMatrixInfo()
+        '''
+        Построение дендрограммы
+        '''
+        self.printInfoTable(self.matrixInfo)
 
         plt.figure(figsize=(13, 7))
-        plt.title("Hybrid Clusterization")
+        plt.title("Иерархический метод кластеризации")
         dendrogram(self.matrixInfo)
         plt.show()

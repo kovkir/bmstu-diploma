@@ -2,6 +2,7 @@
 
 from matplotlib import pyplot as plt
 from typing import List, Union
+from prettytable import PrettyTable
 
 from haClusterization import HAClusterization
 from kPrototypesClusterization import KPrototypesClusterization
@@ -63,16 +64,38 @@ class HybridClusterization():
         for iCenter in range(self.numberClusters):
             for iElem in self.clusterContents[iCenter]:
                 distsToCenter.append(matrixDists[iElem][iCenter])
-                centerNumbers.append(iCenter)
+                centerNumbers.append(iCenter + 1)
 
         return distsToCenter, centerNumbers
     
+    
+    @staticmethod
+    def printInfoTable(distsToCenter: List[int], centerNumbers: List[int]) -> None:
+        '''
+        Построение таблицы результатов кластеризации
+        '''
+        tableHeader = ["Номер объекта", "Номер центроида", "Расстояние до центроида"]
+        table = PrettyTable(tableHeader)
+
+        for i in range(len(distsToCenter)):
+            table.add_row([
+                i + 1,
+                centerNumbers[i],
+                round(distsToCenter[i], 3)
+            ])
+        print("\n    --- Результаты кластеризации гибридным методом ---")
+        print(table)
+
 
     def buildGraph(self) -> None:
+        '''
+        Построение графика
+        '''
         distsToCenter, centerNumbers = self.findDistancesToClusterCenters()
+        self.printInfoTable(distsToCenter, centerNumbers)
 
         plt.figure(figsize=(10, 7))
-        plt.plot(distsToCenter, centerNumbers, 'o', label = 'Hybrid Clusterization')
+        plt.plot(distsToCenter, centerNumbers, 'o', label = 'Гибридный метод кластеризации')
         plt.grid(True)
         plt.legend()
         plt.ylabel('Номер кластера')

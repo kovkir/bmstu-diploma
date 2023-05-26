@@ -39,35 +39,52 @@ class Window():
 
 
     def createInterface(self, windowWidth: int, windowHeight: int):
-        Label(text = "ПАРАМЕТРЫ", 
-              font = ("Arial", 16, "bold"), bg = PURPLE_DARK, fg = "white")\
-            .place(width = windowWidth, height = 30, x = 0 , y = 10)
+        Label(
+            text = "ПАРАМЕТРЫ", 
+            font = ("Arial", 16, "bold"), bg = PURPLE_DARK, fg = "white"
+        ).place(
+            width = windowWidth, height = 30, 
+            x = 0 , y = 10)
 
-        Label(text = "Количество итоговых кластеров", 
-              font = ("Arial", 16), bg = PURPLE_LIGHT, fg = PURPLE_SUPER_DARK)\
-            .place(width = windowWidth * 0.5, height = 30, x = windowWidth * 0.1, y = 50)
+        Label(
+            text = "Количество итоговых кластеров", 
+            font = ("Arial", 16), bg = PURPLE_LIGHT, fg = PURPLE_SUPER_DARK
+        ).place(
+            width = windowWidth * 0.5, height = 30, 
+            x = windowWidth * 0.1, y = 50)
 
         self.numberClusters = Entry(font = ("Arial", 17))
-        self.numberClusters.place(width = windowWidth * 0.3, height = 30, x = windowWidth * 0.6, y = 50)
+        self.numberClusters.place(
+            width = windowWidth * 0.3, height = 30, 
+            x = windowWidth * 0.6, y = 50)
 
         Label(text = "Количество обрабатываемых объектов", 
               font = ("Arial", 16), bg = PURPLE_LIGHT, fg = PURPLE_SUPER_DARK)\
             .place(width = windowWidth * 0.5, height = 30, x = windowWidth * 0.1, y = 90)
 
         self.numberObjects = Entry(font = ("Arial", 17))
-        self.numberObjects.place(width = windowWidth * 0.3, height = 30, x = windowWidth * 0.6, y = 90)
+        self.numberObjects.place(
+            width = windowWidth * 0.3, height = 30, 
+            x = windowWidth * 0.6, y = 90)
 
-        Label(text = "Количество прогонов для K-прототипов\nпри сравнении методов", 
-              font = ("Arial", 16), bg = PURPLE_LIGHT, fg = PURPLE_SUPER_DARK)\
-            .place(width = windowWidth * 0.5, height = 30, x = windowWidth * 0.1, y = 130)
+        Label(
+            text = "Количество прогонов для K-прототипов\nпри сравнении методов", 
+            font = ("Arial", 16), bg = PURPLE_LIGHT, fg = PURPLE_SUPER_DARK
+        ).place(
+            width = windowWidth * 0.5, height = 30, 
+            x = windowWidth * 0.1, y = 130)
 
         self.numberRuns = Entry(font = ("Arial", 17))
-        self.numberRuns.place(width = windowWidth * 0.3, height = 30, x = windowWidth * 0.6, y = 130)
+        self.numberRuns.place(
+            width = windowWidth * 0.3, height = 30, 
+            x = windowWidth * 0.6, y = 130)
 
-
-        Label(text = "ВЫБОР МЕТОДА РАЗБИЕНИЯ ДАННЫХ",
-              font = ("Arial", 16, "bold"), bg = PURPLE_DARK, fg = "white")\
-            .place(width = windowWidth, height = 30, x = 0 , y = 170)
+        Label(
+            text = "ВЫБОР МЕТОДА РАЗБИЕНИЯ ДАННЫХ",
+            font = ("Arial", 16, "bold"), bg = PURPLE_DARK, fg = "white"
+        ).place(
+            width = windowWidth, height = 30, 
+            x = 0 , y = 170)
 
         self.methodVar = IntVar()
         self.methodVar.set(HYBRID)
@@ -76,39 +93,51 @@ class Window():
             text = "Агломеративный подход иерархической кластеризации", 
             variable = self.methodVar, value = HA,
             font = ("Arial", 16), bg = PURPLE_LIGHT, fg = PURPLE_SUPER_DARK,
-            anchor = "w")\
-            .place(width = windowWidth * 0.7, height = 30, x = windowWidth  * 0.15, y = 210)
+            anchor = "w"
+        ).place(
+            width = windowWidth * 0.7, height = 30, 
+            x = windowWidth  * 0.15, y = 210)
         
         Radiobutton(
             text = "Метод кластеризации центроидного типа K-прототипов", 
             variable = self.methodVar, value = K_PROTOTYPES,
             font = ("Arial", 16), bg = PURPLE_LIGHT, fg = PURPLE_SUPER_DARK,
-            anchor = "w")\
-            .place(width = windowWidth * 0.7, height = 30, x = windowWidth  * 0.15, y = 250)
+            anchor = "w"
+        ).place(
+            width = windowWidth * 0.7, height = 30, 
+            x = windowWidth  * 0.15, y = 250)
         
         Radiobutton(
-            text = "Реализованный гибридный метод кластеризации", 
+            text = "Гибридный метод кластеризации", 
             variable = self.methodVar, value = HYBRID,
             font = ("Arial", 16), bg = PURPLE_LIGHT, fg = PURPLE_SUPER_DARK,
-            anchor = "w")\
-            .place(width = windowWidth * 0.7, height = 30, x = windowWidth  * 0.15, y = 290)
+            anchor = "w"
+        ).place(
+            width = windowWidth * 0.7, height = 30, 
+            x = windowWidth  * 0.15, y = 290)
 
         # вместо границы кнопки
-        Button(highlightbackground = PURPLE_DARK, highlightthickness = 30, 
-               fg = PURPLE_LIGHT, state = DISABLED)\
-            .place(width = windowWidth * 0.8, height = 40, x = windowWidth * 0.1, y = 330)
-
+        Button(
+            highlightbackground = PURPLE_DARK, highlightthickness = 30, 
+            fg = PURPLE_LIGHT, state = DISABLED
+        ).place(
+            width = windowWidth * 0.8, height = 40, 
+            x = windowWidth * 0.1, y = 330)
         Button(
             text = "Кластеризировать данные", 
             font = ("Arial", 16), fg = PURPLE_SUPER_DARK,
             highlightbackground = PURPLE, highlightthickness = 30,
-            command = lambda: self.doClustering())\
-            .place(width = windowWidth * 0.8 - 4, height = 36, x = windowWidth * 0.1 + 2, y = 332)
+            command = lambda: self.doClustering()
+        ).place(
+            width = windowWidth * 0.8 - 4, height = 36, 
+            x = windowWidth * 0.1 + 2, y = 332)
 
-
-        Label(text = "МЕТОДЫ ОЦЕНКИ КАЧЕСТВА КЛАСТЕРИЗАЦИИ",
-              font = ("Arial", 16, "bold"), bg = PURPLE_DARK, fg = "white")\
-            .place(width = windowWidth, height = 30, x = 0 , y = 380)
+        Label(
+            text = "МЕТОДЫ ОЦЕНКИ КАЧЕСТВА КЛАСТЕРИЗАЦИИ",
+            font = ("Arial", 16, "bold"), bg = PURPLE_DARK, fg = "white"
+        ).place(
+            width = windowWidth, height = 30, 
+            x = 0 , y = 380)
         
         self.comparisonVar = IntVar()
         self.comparisonVar.set(ELBOW)
@@ -117,41 +146,55 @@ class Window():
             text = "Метод оценки силуэтов", 
             variable = self.comparisonVar, value = EVALUATION_SILHOUETTES,
             font = ("Arial", 16), bg = PURPLE_LIGHT, fg = PURPLE_SUPER_DARK,
-            anchor = "w")\
-            .place(width = windowWidth * 0.35, height = 30, x = windowWidth  * 0.15, y = 420)
+            anchor = "w"
+        ).place(
+            width = windowWidth * 0.35, height = 30, 
+            x = windowWidth  * 0.15, y = 420)
         
         Radiobutton(
             text = "Метод локтя", 
             variable = self.comparisonVar, value = ELBOW,
             font = ("Arial", 16), bg = PURPLE_LIGHT, fg = PURPLE_SUPER_DARK,
-            anchor = "w")\
-            .place(width = windowWidth * 0.35, height = 30, x = windowWidth  * 0.6, y = 420)
+            anchor = "w"
+        ).place(
+            width = windowWidth * 0.35, height = 30, 
+            x = windowWidth  * 0.6, y = 420)
 
-        Button(highlightbackground = PURPLE_DARK, highlightthickness = 30, 
-               fg = PURPLE_LIGHT, state = DISABLED)\
-            .place(width = windowWidth * 0.8, height = 40, x = windowWidth * 0.1, y = 460)
-
+        Button(
+            highlightbackground = PURPLE_DARK, highlightthickness = 30, 
+            fg = PURPLE_LIGHT, state = DISABLED
+        ).place(
+            width = windowWidth * 0.8, height = 40, 
+            x = windowWidth * 0.1, y = 460)
         Button(
             text = "Сравнить методы разбиения", 
             font = ("Arial", 16), fg = PURPLE_SUPER_DARK,
             highlightbackground = PURPLE, highlightthickness = 30,
-            command = lambda: self.doComparison())\
-            .place(width = windowWidth * 0.8 - 4, height = 36, x = windowWidth * 0.1 + 2, y = 462)
+            command = lambda: self.doComparison()
+        ).place(
+            width = windowWidth * 0.8 - 4, height = 36, 
+            x = windowWidth * 0.1 + 2, y = 462)
         
-
-        Label(text = "О ПРОГРАММЕ", font = ("Arial", 16, "bold"), bg = PURPLE_DARK,
-            fg = "white").place(width = windowWidth, height = 30, x = 0 , y = windowHeight - 90)
+        Label(
+            text = "О ПРОГРАММЕ", 
+            font = ("Arial", 16, "bold"), bg = PURPLE_DARK, fg = "white"
+        ).place(
+            width = windowWidth, height = 30, 
+            x = 0 , y = windowHeight - 90)
 
         Button(highlightbackground = PURPLE_DARK, highlightthickness = 30, 
-               fg = PURPLE_LIGHT, state = DISABLED)\
-            .place(width = windowWidth * 0.8, height = 40, x = windowWidth * 0.1, y = windowHeight - 50)
-
+               fg = PURPLE_LIGHT, state = DISABLED
+        ).place(
+            width = windowWidth * 0.8, height = 40, 
+            x = windowWidth * 0.1, y = windowHeight - 50)
         Button(
             text = "Информация о программе", 
             font = ("Arial", 16), fg = PURPLE_SUPER_DARK,
             highlightbackground = PURPLE, highlightthickness = 30, 
-            command = lambda: self.aboutProgram())\
-            .place(width = windowWidth * 0.8 - 4, height = 36, x = windowWidth * 0.1 + 2, y = windowHeight - 48)
+            command = lambda: self.aboutProgram()
+        ).place(
+            width = windowWidth * 0.8 - 4, height = 36, 
+            x = windowWidth * 0.1 + 2, y = windowHeight - 48)
     
 
     def getNumberObjects(self) -> Union[int, None]:
@@ -252,8 +295,11 @@ class Window():
 
     def aboutProgram(self):
         messagebox.showinfo("О программе",
-            ""
-            "\n\nКовалец Кирилл ИУ7-83Б (2023)")
+            '''
+            Реализация метода разбиения категориальных данных 
+            на основе агломеративного подхода иерархической кластеризации
+            \n\nКовалец Кирилл ИУ7-83Б (2023)
+            ''')
 
      
     def run(self):
