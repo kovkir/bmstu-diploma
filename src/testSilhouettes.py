@@ -205,11 +205,12 @@ class TestSilhouettes():
         Построения графика зависимости среднего значения коэффициента силуэта от кол-ва кластеров
         '''
         plt.figure(figsize=(13, 7))
-        plt.plot(listСlusterNumbers, listAvgDistanceHA, label = 'Иерархический метод кластеризации')
-        plt.plot(listСlusterNumbers, listAvgDistanceKP, label = 'Метод кластеризации K-прототипов')
-        plt.plot(listСlusterNumbers, listAvgDistanceHybrid, label = 'Гибридный метод кластеризации')
+        plt.title("Метод оценки силуэтов")
+        plt.plot(listСlusterNumbers, listAvgDistanceHA, '-.', label = 'Иерархический метод кластеризации')
+        plt.plot(listСlusterNumbers, listAvgDistanceKP, '--', label = 'Метод кластеризации K-прототипов')
+        plt.plot(listСlusterNumbers, listAvgDistanceHybrid, '-', label = 'Гибридный метод кластеризации')
         plt.grid(True)
         plt.legend()
         plt.ylabel('Среднее значение коэффициента силуэта')
-        plt.xlabel('Кол-во кластеров')
+        plt.xlabel('Кол-во кластеров, шт.')
         plt.show()

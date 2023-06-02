@@ -2,6 +2,7 @@ from matplotlib import pyplot as plt
 from typing import List
 from enum import Enum
 from prettytable import PrettyTable
+import numpy as np
 
 from distance import Distance
 from haClusterization import HAClusterization
@@ -150,11 +151,12 @@ class TestElbow():
         Построение графика зависимости среднего расстояния в пределах кластера от кол-ва кластеров
         '''
         plt.figure(figsize=(13, 7))
-        plt.plot(listСlusterNumbers, listAvgDistanceHA, label = 'Иерархический метод кластеризации')
-        plt.plot(listСlusterNumbers, listAvgDistanceKP, label = 'Метод кластеризации K-прототипов')
-        plt.plot(listСlusterNumbers, listAvgDistanceHybrid, label = 'Гибридный метод кластеризации')
+        plt.title("Метод локтя")
+        plt.plot(listСlusterNumbers, listAvgDistanceHA, '-.', label = 'Иерархический метод кластеризации')
+        plt.plot(listСlusterNumbers, listAvgDistanceKP, '--', label = 'Метод кластеризации K-прототипов')
+        plt.plot(listСlusterNumbers, listAvgDistanceHybrid, '-', label = 'Гибридный метод кластеризации')
         plt.grid(True)
         plt.legend()
         plt.ylabel('Среднее расстояние в пределах кластера')
-        plt.xlabel('Кол-во кластеров')
+        plt.xlabel('Кол-во кластеров, шт.')
         plt.show()

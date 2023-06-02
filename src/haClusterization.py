@@ -177,4 +177,6 @@ class HAClusterization():
         plt.figure(figsize=(13, 7))
         plt.title("Иерархический метод кластеризации")
         dendrogram(self.matrixInfo)
+        plt.ylabel('Среднее расстояние между кластерами')
+        plt.xlabel('Номера начальных кластеров')
         plt.show()
