@@ -156,19 +156,23 @@ class KPrototypesClusterization():
         Нахождение расстояний между элементами кластеров и их центрами для построения графика
         '''
         distsToCenter = []
+        clusterNumbers = []
         centerNumbers = []
         matrixDists = self.createMatrixDistances(self.clusterCenters)
 
         for iCenter in range(self.k):
             for iElem in self.clusterContents[iCenter]:
                 distsToCenter.append(matrixDists[iElem][iCenter])
+                clusterNumbers.append(iElem)
                 centerNumbers.append(iCenter + 1)
 
-        return distsToCenter, centerNumbers
+        return distsToCenter, clusterNumbers, centerNumbers
     
 
     @staticmethod
-    def printInfoTable(distsToCenter: List[int], centerNumbers: List[int]) -> None:
+    def printInfoTable(
+            distsToCenter: List[int], clusterNumbers: List[int], 
+            centerNumbers: List[int]) -> None:
         '''
         Построение таблицы результатов кластеризации 
         '''
@@ -177,7 +181,7 @@ class KPrototypesClusterization():
 
         for i in range(len(distsToCenter)):
             table.add_row([
-                i + 1,
+                clusterNumbers[i],
                 centerNumbers[i],
                 round(distsToCenter[i], 3)
             ])
@@ -189,8 +193,9 @@ class KPrototypesClusterization():
         '''
         Построение графика
         '''
-        distsToCenter, centerNumbers = self.findDistancesToClusterCenters()
-        self.printInfoTable(distsToCenter, centerNumbers)
+        distsToCenter, clusterNumbers, centerNumbers = \
+            self.findDistancesToClusterCenters()
+        self.printInfoTable(distsToCenter, clusterNumbers, centerNumbers)
 
         plt.figure(figsize=(10, 7))
         plt.plot(distsToCenter, centerNumbers, 'or', label = 'Метод кластеризации K-прототипов')
