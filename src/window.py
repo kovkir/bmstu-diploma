@@ -1,6 +1,6 @@
 from typing import List, Union
 from tkinter import Tk, Label, Entry, Radiobutton, IntVar, \
-                    Button, messagebox, DISABLED, END
+                    Button, messagebox, DISABLED
 
 from haClusterization import HAClusterization
 from kPrototypesClusterization import KPrototypesClusterization

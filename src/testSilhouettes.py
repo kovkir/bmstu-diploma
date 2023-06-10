@@ -1,5 +1,5 @@
 from matplotlib import pyplot as plt
-from typing import List, Union
+from typing import List
 from prettytable import PrettyTable
 
 from distance import Distance

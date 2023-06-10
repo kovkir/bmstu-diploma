@@ -2,7 +2,6 @@ from matplotlib import pyplot as plt
 from typing import List
 from enum import Enum
 from prettytable import PrettyTable
-import numpy as np
 
 from distance import Distance
 from haClusterization import HAClusterization
